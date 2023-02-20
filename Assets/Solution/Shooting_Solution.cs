@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using Valve.VR;
+using UnityEngine.UIElements;
 
 public class Shooting_Solution : Shooting
 {
@@ -9,32 +11,20 @@ public class Shooting_Solution : Shooting
         TaskTwo(hasAmmo);
     }
 
-    IEnumerator LongVibration(float length, ushort strength)
-    {
-        yield return new WaitForSeconds(0.1f);
-
-        float start = Time.realtimeSinceStartup;
-        while (Time.realtimeSinceStartup - start < length)
-        {
-            //SteamVR_Controller.Device device = SteamVR_Controller.Input((int)controller.index);
-            //device.TriggerHapticPulse(strength);
-
-            yield return null; // will wait until next frame before continuing
-        }
-    }
-
     void TaskTwo(bool hasAmmo)
     {
-        int strength = hasAmmo ? 3999 : 1000;
-        float length = hasAmmo ? 0.01f : 0.005f;
-        StartCoroutine(LongVibration(length, (ushort)strength));    
+        float strength = hasAmmo ? 0.5f : 1.0f;
+        float duration = hasAmmo ? 0.1f : 0.05f;
+
+        //SteamVR_Actions.default_Haptic[controller.inputSource].Execute(0, duration, 10, strength);
+        SteamVR_Actions.default_Haptic[controller.inputSource].Execute(0, 1.0f, 50, 1.0f);
+
+        Debug.Log("firing haptics");
     }
     
     void TaskOne(bool hasAmmo)
     {
-        //SteamVR_Controller.Device device = SteamVR_Controller.Input((int)controller.index);
-
-        int duration = hasAmmo ? 3999 : 1000;
-        //device.TriggerHapticPulse((ushort)duration);
+        float duration = hasAmmo ? 1.0f : 0.05f;
+        SteamVR_Actions.default_Haptic[controller.inputSource].Execute(0, duration, 10, 1.0f);
     }
 }

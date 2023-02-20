@@ -24,10 +24,7 @@ public class CreakingLid : MonoBehaviour
 
         if(controller != null && Mathf.Abs(current - lastAngle) > hapticThreshold)
         {
-            //SteamVR_Controller.Device device = SteamVR_Controller.Input((int)controller.index);
-            //device.TriggerHapticPulse(3999);
-            Debug.Log("haptics go brrrrr");
-
+            SteamVR_Actions.default_Haptic[controller.inputSource].Execute(0, 0.1f, 10, 1.0f);
             lastAngle = current;
         }
 	}
@@ -43,8 +40,6 @@ public class CreakingLid : MonoBehaviour
 
     void OnTriggerExit(Collider c)
     {
-        print("leave" + c.ToString());
-
         SteamVR_Behaviour_Pose target = c.gameObject.GetComponent<SteamVR_Behaviour_Pose>();
         if (target != null && target == controller)
         {

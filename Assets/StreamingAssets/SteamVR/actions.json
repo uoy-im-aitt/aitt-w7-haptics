@@ -9,10 +9,6 @@
       "type": "boolean"
     },
     {
-      "name": "/actions/default/in/GrabPinch",
-      "type": "boolean"
-    },
-    {
       "name": "/actions/default/in/GrabGrip",
       "type": "boolean"
     },
@@ -47,6 +43,10 @@
     },
     {
       "name": "/actions/default/in/SnapTurnRight",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/GrabPinch",
       "type": "boolean"
     },
     {
@@ -159,7 +159,6 @@
     {
       "language_tag": "en_US",
       "/actions/default/in/GrabGrip": "Grab Grip",
-      "/actions/default/in/GrabPinch": "Grab Pinch",
       "/actions/default/in/HeadsetOnHead": "Headset on head (proximity sensor)",
       "/actions/default/in/InteractUI": "Interact With UI",
       "/actions/default/in/Pose": "Pose",
