@@ -20,7 +20,7 @@ The HTC Vive provides haptic feedback with vibration motors, which are embedded 
 - Frequency: 20Hz
 - Intensity: 75%
 
-```
+```c#
 float duration = 0.2f;
 int frequency = 20;
 float strength = 0.75f;
