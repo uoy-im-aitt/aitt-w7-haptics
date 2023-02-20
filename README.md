@@ -48,11 +48,11 @@ A haptic effect similar to what you are aiming for can be felt in the “Longbow
 
 When completing this task you may find that the “angle” variable of the “HingeJoint” component of the “Top” game object will be of great use:
 
-https://docs.unity3d.com/ScriptReference/HingeJoint.html
+- https://docs.unity3d.com/ScriptReference/HingeJoint.html
 
 # Optional Extension
 
 If you complete all of the above tasks before the end of the practical, or would like to continue to develop your skills in your free study time, then you should consider experimenting with some of the following tasks:
 
-•	Explore how to create a series of vibration pulses that match with the gun fire and reload sound (i.e. a strong pulse, followed by a delay and then two shorter pulses). You will need to explore how to use the use the WaitForSeconds object in a co-routine when completing this task (https://docs.unity3d.com/Manual/Coroutines.html)
-•	Explore how to create a creaking sound that is played in synchrony with the vibration pulses when opening and closing the chest. The following forum post explains a nice approach to solving this problem: http://answers.unity3d.com/questions/556758/door-opening-sound-according-to-opening-speeddirec.html
+- Explore how to create a series of vibration pulses that match with the gun fire and reload sound (i.e. a strong pulse, followed by a delay and then two shorter pulses). You will need to explore how to use the use the WaitForSeconds object in a co-routine when completing this task (https://docs.unity3d.com/Manual/Coroutines.html)
+- Explore how to create a creaking sound that is played in synchrony with the vibration pulses when opening and closing the chest. The following forum post explains a nice approach to solving this problem: http://answers.unity3d.com/questions/556758/door-opening-sound-according-to-opening-speeddirec.html
