@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Valve.VR;
 
-[RequireComponent(typeof(SteamVR_TrackedObject))]
+[RequireComponent(typeof(SteamVR_Behaviour_Pose))]
 [RequireComponent(typeof(Collider))]
 public class GunGrabber : Grabber
 {
+    public string pickupGunAction = "GrabGrip";
     public Vector3 gunPose;
     public Vector3 gunPosition;
 
@@ -17,11 +19,11 @@ public class GunGrabber : Grabber
 
     protected override void Update ()
     {
-        SteamVR_Controller.Device device = SteamVR_Controller.Input((int)controller.index);
+        bool pressDown = SteamVR_Input.GetStateDown(pickupGunAction, controller.inputSource);
 
-        if (grabbed == null && target != null && device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+        if (grabbed == null && target != null && pressDown)
         {
-            ChangeRendererVisibility(controller, false);
+            ChangeRendererVisibility(false);
 
             grabbed = target;
             grabbed.GetComponent<Rigidbody>().isKinematic = true;
@@ -31,7 +33,7 @@ public class GunGrabber : Grabber
             grabbed.gameObject.GetComponent<Shooting>().PickUp();
             grabbed.GetComponent<Collider>().isTrigger = true;      
         }
-        else if(grabbed != null && device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+        else if(grabbed != null && pressDown)
         {
             grabbed.gameObject.GetComponent<Shooting>().PutDown();
             grabbed.transform.parent = null;
@@ -39,13 +41,13 @@ public class GunGrabber : Grabber
             grabbed.GetComponent<Collider>().isTrigger = false;
             grabbed = null;
 
-            ChangeRendererVisibility(controller, true);
+            ChangeRendererVisibility(true);
         }
     }
 
-    private void ChangeRendererVisibility(SteamVR_TrackedObject parent, bool visibility)
+    private void ChangeRendererVisibility(bool visibility)
     {
-        foreach (MeshRenderer child in parent.GetComponentsInChildren<MeshRenderer>())
+        foreach (SteamVR_RenderModel child in GetComponentsInChildren<SteamVR_RenderModel>())
         {
             child.enabled = visibility;
         }

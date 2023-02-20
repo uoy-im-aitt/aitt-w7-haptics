@@ -16,8 +16,8 @@ public class Shooting_Solution : Shooting
         float start = Time.realtimeSinceStartup;
         while (Time.realtimeSinceStartup - start < length)
         {
-            SteamVR_Controller.Device device = SteamVR_Controller.Input((int)controller.index);
-            device.TriggerHapticPulse(strength);
+            //SteamVR_Controller.Device device = SteamVR_Controller.Input((int)controller.index);
+            //device.TriggerHapticPulse(strength);
 
             yield return null; // will wait until next frame before continuing
         }
@@ -32,9 +32,9 @@ public class Shooting_Solution : Shooting
     
     void TaskOne(bool hasAmmo)
     {
-        SteamVR_Controller.Device device = SteamVR_Controller.Input((int)controller.index);
+        //SteamVR_Controller.Device device = SteamVR_Controller.Input((int)controller.index);
 
         int duration = hasAmmo ? 3999 : 1000;
-        device.TriggerHapticPulse((ushort)duration);
+        //device.TriggerHapticPulse((ushort)duration);
     }
 }

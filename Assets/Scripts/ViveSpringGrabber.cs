@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Valve.VR;
 
 [RequireComponent(typeof(SpringJoint))]
-[RequireComponent(typeof(SteamVR_TrackedObject))]
+[RequireComponent(typeof(SteamVR_Behaviour_Pose))]
 [RequireComponent(typeof(Collider))]
 public class ViveSpringGrabber : Grabber
 {
+    public string grabAction = "GrabPinch";
     private SpringJoint joint;
     
     new void Start ()
@@ -16,13 +18,11 @@ public class ViveSpringGrabber : Grabber
 	
 	protected override void Update ()
     {
-        SteamVR_Controller.Device device = SteamVR_Controller.Input((int)controller.index);
-
-        if (joint.connectedBody == null && target != null && device.GetPressDown(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
+        if (joint.connectedBody == null && target != null && SteamVR_Input.GetStateDown(grabAction, controller.inputSource))
         {
             joint.connectedBody = target.GetComponent<Rigidbody>();
         }
-        else if (joint.connectedBody != null && device.GetPressUp(Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger))
+        else if (joint.connectedBody != null && SteamVR_Input.GetStateUp(grabAction, controller.inputSource))
         {
             joint.connectedBody = null;
         }

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Valve.VR;
 
 [RequireComponent(typeof(HingeJoint))]
 public class CreakingLid : MonoBehaviour
@@ -8,7 +9,7 @@ public class CreakingLid : MonoBehaviour
 
     private HingeJoint joint;
     private float lastAngle;
-    private SteamVR_TrackedObject controller = null;
+    private SteamVR_Behaviour_Pose controller = null;
 
 	void Start ()
     {
@@ -23,8 +24,9 @@ public class CreakingLid : MonoBehaviour
 
         if(controller != null && Mathf.Abs(current - lastAngle) > hapticThreshold)
         {
-            SteamVR_Controller.Device device = SteamVR_Controller.Input((int)controller.index);
-            device.TriggerHapticPulse(3999);
+            //SteamVR_Controller.Device device = SteamVR_Controller.Input((int)controller.index);
+            //device.TriggerHapticPulse(3999);
+            Debug.Log("haptics go brrrrr");
 
             lastAngle = current;
         }
@@ -32,7 +34,7 @@ public class CreakingLid : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
-        SteamVR_TrackedObject target = c.gameObject.GetComponent<SteamVR_TrackedObject>();
+        SteamVR_Behaviour_Pose target = c.gameObject.GetComponent<SteamVR_Behaviour_Pose>();
         if(target != null)
         {
             controller = target;
@@ -43,7 +45,7 @@ public class CreakingLid : MonoBehaviour
     {
         print("leave" + c.ToString());
 
-        SteamVR_TrackedObject target = c.gameObject.GetComponent<SteamVR_TrackedObject>();
+        SteamVR_Behaviour_Pose target = c.gameObject.GetComponent<SteamVR_Behaviour_Pose>();
         if (target != null && target == controller)
         {
             controller = null;

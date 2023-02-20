@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using Valve.VR;
 
 public class Shooting : MonoBehaviour
 {
+    public string fireAction = "GrabPinch";
     public int fireDelay = 1000;
     public int maxAmmo = 10;
     public float explosionForce = 50.0f;
@@ -11,7 +13,7 @@ public class Shooting : MonoBehaviour
     public AudioClip fire;
     public AudioClip noAmmo;
 
-    protected SteamVR_TrackedObject controller;
+    protected SteamVR_Behaviour_Pose controller;
     private LineRenderer line;
     private DateTime lastFired;
     private AudioSource sound;
@@ -36,7 +38,7 @@ public class Shooting : MonoBehaviour
 
     public void PickUp()
     {
-        controller = GetComponentInParent<SteamVR_TrackedObject>();
+        controller = GetComponentInParent<SteamVR_Behaviour_Pose>();
         pickedUp = true;
     }
 
@@ -59,9 +61,10 @@ public class Shooting : MonoBehaviour
                 line.SetPosition(1, hitInfo.point);
                 line.enabled = true;
 
-                SteamVR_Controller.Device device = SteamVR_Controller.Input((int)controller.index);
+                bool pressDown = SteamVR_Input.GetStateDown(fireAction, controller.inputSource);
+
                 TimeSpan elapsed = DateTime.Now - lastFired;
-                if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) && elapsed > TimeSpan.FromMilliseconds(fireDelay))
+                if (pressDown && elapsed > TimeSpan.FromMilliseconds(fireDelay))
                 {
                     if (ammo > 0)
                     {

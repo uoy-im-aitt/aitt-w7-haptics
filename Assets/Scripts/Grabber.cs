@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Valve.VR;
 
 public abstract class Grabber : MonoBehaviour
 {
     public string tagFilter;
 
-    protected SteamVR_TrackedObject controller;
+    protected SteamVR_Behaviour_Pose controller;
     protected GameObject target = null;
 
     protected abstract void Update();
 
     protected void Start ()
     {
-        controller = GetComponent<SteamVR_TrackedObject>();
+        controller = GetComponent<SteamVR_Behaviour_Pose>();
     }
 
     protected void OnTriggerEnter(Collider c)
