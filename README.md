@@ -28,4 +28,16 @@ float strength = 0.75f;
 SteamVR_Actions.default_Haptic[controller.inputSource].Execute(0, duration, frequency, strength);
 ```
 
-a single burst of vibro-tactile feedback that lasts between 0 and 3999 microseconds. To make the controller vibrate from your program, you can use the following code snippet:
+In this first task, you should add some basic haptic feedback to the gun in the scene so that when the gun fires successfully an intense vibration pulse is felt in the controller holding it.
+
+When implementing this behavior, you should write your code within the ‘FireHapticFeedback’ holding method within the ‘Shooting’ script. This method is automatically called by the same when the user fires. 
+
+# Task 2: Manipulating the Vibration Pulse for a Different Effect
+
+In this task, you should extend your implementation so that when the gun is out of ammo and the user tries to fire a different vibration is felt. Consider how you can vary the three parameters to create a sensation that's more like the subtle clicking of a firing pin rather than a gunshot. 
+
+The method has a Boolean parameter ‘hasAmmo’ that you can use to determine whether to provide an intense pulse or a less intense pulse. You can find the Shooting script within the “Scripts” folder in the project.
+
+To complete this task, grab a pair of headphones and see whether your two different haptic effects feel more realistic when paired with sound.
+
+
