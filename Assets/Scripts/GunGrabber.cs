@@ -9,6 +9,7 @@ public class GunGrabber : Grabber
     public string pickupGunAction = "GrabGrip";
     public Vector3 gunPose;
     public Vector3 gunPosition;
+    public GameObject renderModel;
 
     private GameObject grabbed = null;
 
@@ -47,9 +48,6 @@ public class GunGrabber : Grabber
 
     private void ChangeRendererVisibility(bool visibility)
     {
-        foreach (SteamVR_RenderModel child in GetComponentsInChildren<SteamVR_RenderModel>())
-        {
-            child.enabled = visibility;
-        }
+        renderModel.SetActive(visibility);
     }
 }

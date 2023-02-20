@@ -13,18 +13,16 @@ public class Shooting_Solution : Shooting
 
     void TaskTwo(bool hasAmmo)
     {
-        float strength = hasAmmo ? 0.5f : 1.0f;
-        float duration = hasAmmo ? 0.1f : 0.05f;
+        float strength = hasAmmo ? 1.0f : 0.5f;
+        float duration = hasAmmo ? 0.2f : 0.05f;
+        int frequency = hasAmmo ? 10 : 30;
 
-        //SteamVR_Actions.default_Haptic[controller.inputSource].Execute(0, duration, 10, strength);
-        SteamVR_Actions.default_Haptic[controller.inputSource].Execute(0, 1.0f, 50, 1.0f);
-
-        Debug.Log("firing haptics");
+        SteamVR_Actions.default_Haptic[controller.inputSource].Execute(0, duration, frequency, strength);
     }
-    
+
     void TaskOne(bool hasAmmo)
     {
-        float duration = hasAmmo ? 1.0f : 0.05f;
-        SteamVR_Actions.default_Haptic[controller.inputSource].Execute(0, duration, 10, 1.0f);
+        float duration = hasAmmo ? 0.1f : 0.05f; ;
+        SteamVR_Actions.default_Haptic[controller.inputSource].Execute(0, 0.1f, 10, 1.0f);
     }
 }
