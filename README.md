@@ -40,4 +40,19 @@ The method has a Boolean parameter ‘hasAmmo’ that you can use to determine w
 
 To complete this task, grab a pair of headphones and see whether your two different haptic effects feel more realistic when paired with sound.
 
+# Task 3: Vibration Patterns for a Creaking Feeling
 
+In this final task you should create a script that provides haptic feedback when the lid of the chest is opened. The feedback should comprise a pattern of pulses that change in frequency depending on the speed at which the user opens and closes the chest. If the chest is opened quickly, then the user should feel a success of pulses in fast succession. If the chest is opened slowly, a series of pulses should be felt in slower succession. This should give a haptic effect that feels a bit like a creaking hinge.
+
+A haptic effect similar to what you are aiming for can be felt in the “Longbow” level of the HTC Vive’s “Lab” demo application, when pulling back the bow string. You can find this application on Steam under “The Lab” (it should already be installed on your PC). 
+
+When completing this task you may find that the “angle” variable of the “HingeJoint” component of the “Top” game object will be of great use:
+
+https://docs.unity3d.com/ScriptReference/HingeJoint.html
+
+# Optional Extension
+
+If you complete all of the above tasks before the end of the practical, or would like to continue to develop your skills in your free study time, then you should consider experimenting with some of the following tasks:
+
+•	Explore how to create a series of vibration pulses that match with the gun fire and reload sound (i.e. a strong pulse, followed by a delay and then two shorter pulses). You will need to explore how to use the use the WaitForSeconds object in a co-routine when completing this task (https://docs.unity3d.com/Manual/Coroutines.html)
+•	Explore how to create a creaking sound that is played in synchrony with the vibration pulses when opening and closing the chest. The following forum post explains a nice approach to solving this problem: http://answers.unity3d.com/questions/556758/door-opening-sound-according-to-opening-speeddirec.html
