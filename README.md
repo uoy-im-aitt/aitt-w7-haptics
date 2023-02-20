@@ -12,3 +12,20 @@ Before moving on to the tasks, take turns to try the game out. Think about some 
 
 If you run out of ammunition, you can find some more in the chest to your left. You can open the chest using the “SpringyJoint” interaction technique we learned about last week.
 
+# Task 1: A Simple Gunshot Vibration Pulse
+
+The HTC Vive provides haptic feedback with vibration motors, which are embedded within each of the controllers (one per controller). These vibration motors can provide bursts of vibrotactile feedback, which vary in intensity, frequency and length. The code snippet below shows how to trigger a vibration with the following parameters:
+
+- Length: 0.2 seconds
+- Frequency: 20Hz
+- Intensity: 75%
+
+```
+float duration = 0.2f;
+int frequency = 20;
+float strength = 0.75f;
+
+SteamVR_Actions.default_Haptic[controller.inputSource].Execute(0, duration, frequency, strength);
+```
+
+a single burst of vibro-tactile feedback that lasts between 0 and 3999 microseconds. To make the controller vibrate from your program, you can use the following code snippet:
